@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>HaptiBraille - Tactile Translator for Deafblind</title>
+  <meta name="theme-color" content="#0d1117">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- Top Header -->
+    <header class="app-header">
+      <div class="brand">
+        <span class="logo-icon">⠓⠁⠏</span>
+        <div>
+          <h1>HaptiBraille</h1>
+          <p class="tagline">Tactile Haptic Translator for the Deafblind</p>
+        </div>
+      </div>
+      <div class="header-badges">
+        <span id="haptic-status" class="badge badge-active">Haptics Ready</span>
+      </div>
+    </header>
+
+    <!-- Main Live Visualization Screen -->
+    <main class="tactile-stage">
+      
+      <!-- Current Character & Braille Symbol Preview -->
+      <div class="char-display-card">
+        <div class="char-info">
+          <span class="char-label">CURRENT UNIT</span>
+          <h2 id="active-char" class="active-char-text">READY</h2>
+          <span id="active-unicode" class="active-unicode-symbol">⠀</span>
+        </div>
+
+        <!-- 6-Dot Physical Braille Cell Visualizer -->
+        <div class="braille-cell-wrapper">
+          <div class="braille-cell" id="braille-cell">
+            <div class="dot-column col-1">
+              <div class="dot" data-dot="1"><span class="dot-number">1</span></div>
+              <div class="dot" data-dot="2"><span class="dot-number">2</span></div>
+              <div class="dot" data-dot="3"><span class="dot-number">3</span></div>
+            </div>
+            <div class="dot-column col-2">
+              <div class="dot" data-dot="4"><span class="dot-number">4</span></div>
+              <div class="dot" data-dot="5"><span class="dot-number">5</span></div>
+              <div class="dot" data-dot="6"><span class="dot-number">6</span></div>
+            </div>
+          </div>
+          <div class="cell-subcaption">6-Dot Tactile Cell</div>
+        </div>
+      </div>
+
+      <!-- Live Stream Timeline of Words -->
+      <div class="stream-container">
+        <span class="stream-title">Translation Buffer</span>
+        <div id="cells-stream" class="cells-stream">
+          <span class="stream-empty-hint">Type or speak below to start transmission...</span>
+        </div>
+      </div>
+
+      <!-- Controls & Input Area -->
+      <div class="input-section">
+        <div class="input-group">
+          <input 
+            type="text" 
+            id="text-input" 
+            placeholder="Type message or press Mic to speak..." 
+            autocomplete="off"
+            value="HELLO"
+          />
+          <button id="mic-btn" class="icon-button" title="Speech to Text">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+              <line x1="12" y1="19" x2="12" y2="23"></line>
+              <line x1="8" y1="23" x2="16" y2="23"></line>
+            </svg>
+          </button>
+        </div>
+
+        <div class="action-buttons">
+          <button id="play-btn" class="primary-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            <span id="play-btn-text">Transmit Tactile Pulses</span>
+          </button>
+          
+          <button id="stop-btn" class="secondary-btn" disabled>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <rect x="6" y="6" width="12" height="12"></rect>
+            </svg>
+            Stop
+          </button>
+        </div>
+
+        <!-- Quick Demo Presets for Hackathon Judges -->
+        <div class="presets-row">
+          <span class="preset-label">Quick Prompts:</span>
+          <button class="preset-chip" data-text="YES">YES</button>
+          <button class="preset-chip" data-text="NO">NO</button>
+          <button class="preset-chip" data-text="HELP">HELP</button>
+          <button class="preset-chip" data-text="WATER">WATER</button>
+          <button class="preset-chip" data-text="SOS">SOS</button>
+        </div>
+      </div>
+
+      <!-- Settings & Tuning Drawer -->
+      <div class="settings-card">
+        <h3>Haptic Timing & Feedback Settings</h3>
+        
+        <div class="setting-item">
+          <div class="setting-label-row">
+            <span>Dot Pulse Duration:</span>
+            <span id="dot-duration-val" class="setting-num">90ms</span>
+          </div>
+          <input type="range" id="dot-duration-slider" min="40" max="220" step="10" value="90">
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-label-row">
+            <span>Gap Between Dots:</span>
+            <span id="gap-duration-val" class="setting-num">70ms</span>
+          </div>
+          <input type="range" id="gap-duration-slider" min="30" max="200" step="10" value="70">
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-label-row">
+            <span>Inter-Character Pause:</span>
+            <span id="char-pause-val" class="setting-num">350ms</span>
+          </div>
+          <input type="range" id="char-pause-slider" min="150" max="800" step="25" value="350">
+        </div>
+
+        <div class="setting-item-toggle">
+          <label for="audio-feedback-toggle">
+            <span>Audio Thump Simulation (Laptop/Mac/iOS test)</span>
+          </label>
+          <input type="checkbox" id="audio-feedback-toggle" checked>
+        </div>
+      </div>
+
+      <!-- Interactive Learn Mode: Braille Alphabet Touch Matrix -->
+      <section class="learn-section">
+        <h3>Alphabet Practice Matrix</h3>
+        <p class="section-hint">Tap any letter below to instantly test its tactile vibration signature.</p>
+        <div id="alphabet-grid" class="alphabet-grid"></div>
+      </section>
+
+    </main>
+
+    <footer class="app-footer">
+      <p>Built for CodeDay • Making communication accessible for Deafblind individuals worldwide</p>
+    </footer>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
