@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How it works | HaptiBraille</title>
+<meta name="description" content="From text to Braille cells to a millisecond-exact rhythm, played on the motor in a single call.">
+<meta name="theme-color" content="#0e1626">
+<meta property="og:title" content="How it works | HaptiBraille">
+<meta property="og:description" content="From text to Braille cells to a millisecond-exact rhythm, played on the motor in a single call.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&display=swap">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body data-page="how">
+<a class="skip" href="#main">Skip to content</a>
+<canvas id="field" aria-hidden="true"></canvas>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="HaptiBraille home"><span data-cell="125"></span>HaptiBraille</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="index.html#story">The story</a>
+      <a href="index.html#try">Try it</a>
+      <a href="tech.html">Tech</a>
+    </nav>
+    <a class="btn btn-amber" href="https://github.com/rbksh/HaptiBraille/raw/main/main-v1/release/HaptiBraille.apk" download="HaptiBraille.apk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg><span>Download<span class="hide-sm"> for Android</span></span></a>
+  </div>
+</header>
+<nav class="rail" aria-label="Chapters">
+  <div class="wrap">
+    <ol>
+      <li><a href="problem.html" class="is-past"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="1"></span></span>The problem</a></li>
+      <li><a href="solution.html" class="is-past"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="12"></span></span>The solution</a></li>
+      <li><a href="audience.html" class="is-past"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="14"></span></span>Who it's for</a></li>
+      <li><a href="why.html" class="is-past"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="145"></span></span>Why we do it</a></li>
+      <li><a href="inspiration.html" class="is-past"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="15"></span></span>Inspiration</a></li>
+      <li><a href="how.html" aria-current="page"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="124"></span></span>How it works</a></li>
+      <li><a href="what.html"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="1245"></span></span>What we build</a></li>
+      <li><a href="tech.html"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="125"></span></span>Tech stack</a></li>
+    </ol>
+    <p class="rail-mobile">Chapter <strong>6</strong> of 8: <strong>How it works</strong></p>
+  </div>
+</nav>
+<main id="main">
+<header class="page-head wrap">
+  <span class="cell-pair" aria-hidden="true"><span data-cell="3456" data-play></span><span data-cell="124" data-play></span></span>
+  <h1 data-load style="--d:.05s">How it works</h1>
+  <p class="lead" data-load style="--d:.15s">From text to Braille cells to a millisecond-exact rhythm, played on the motor in a single call.</p>
+</header>
+<article class="prose wrap">
+<h2 data-reveal>From text to a tap in your hand</h2>
+<p data-reveal>Every message goes through the same five steps. The first three happen in milliseconds, before the phone vibrates at all.</p>
+<ol class="pipeline">
+  <li data-reveal>
+    <div>
+      <h3>Text comes in</h3>
+      <p>You type, paste or dictate it, a hearing person speaks it in Talk to me, or it comes from a demo notification. Every piece of text passes through one shared entry point, so it could later be summarised by an AI first.</p>
+    </div>
+  </li>
+  <li data-reveal>
+    <div>
+      <h3>Text becomes Braille cells</h3>
+      <p>Each character is looked up in a Grade 1 Unified English Braille table: 26 letters, digits and 27 punctuation marks. Extra cells are added where Braille needs them: a capital sign before capitals, a number sign before numbers. Characters with no Braille match are skipped and reported.</p>
+    </div>
+  </li>
+  <li data-reveal>
+    <div>
+      <h3>Cells become a timed rhythm</h3>
+      <p>Using your timing settings, each cell becomes a precise list: soft tick 12 ms, silence 100 ms, tap 40 ms, and so on. Silences next to each other are merged. Every tap remembers which letter and which dot it belongs to.</p>
+    </div>
+  </li>
+  <li data-reveal>
+    <div>
+      <h3>The whole rhythm is sent to the motor in one go</h3>
+      <p>The list is converted into two arrays, durations and strengths, and handed to Android's <code>VibrationEffect.createWaveform</code> in a single call. Android plays it, so the timing stays exact even if the screen is busy.</p>
+    </div>
+  </li>
+  <li data-reveal>
+    <div>
+      <h3>The screen follows along</h3>
+      <p>About 60 times a second, the app works out which dot is vibrating right now, lights it up on a large Braille cell and highlights the letter in the text. Sighted helpers see exactly what is being felt.</p>
+    </div>
+  </li>
+</ol>
+
+<h2 data-reveal>Inside one letter</h2>
+<p data-reveal>Here is the letter h with the standard settings and the start tick on. The numbers are milliseconds.</p>
+<div class="table-wrap" data-reveal>
+  <table>
+    <caption class="visually-hidden">Timeline of the letter h</caption>
+    <thead><tr><th scope="col">Part</th><th scope="col">What you feel</th><th scope="col">Length</th></tr></thead>
+    <tbody>
+      <tr><td>Start tick</td><td>A soft, short pulse at 35% strength</td><td>12 ms</td></tr>
+      <tr><td>Dot 1</td><td>Tap</td><td>100 + 40 ms</td></tr>
+      <tr><td>Dot 2</td><td>Tap</td><td>100 + 40 ms</td></tr>
+      <tr><td>Dot 3</td><td>Silence</td><td>100 + 50 ms</td></tr>
+      <tr><td>Dot 4</td><td>Silence</td><td>100 + 50 ms</td></tr>
+      <tr><td>Dot 5</td><td>Tap</td><td>100 + 40 ms</td></tr>
+      <tr><td>Dot 6</td><td>Silence</td><td>100 + 50 ms</td></tr>
+      <tr><td>Total</td><td>Then a 300 ms pause before the next letter</td><td>882 ms</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2 data-reveal>Keeping letters from blurring</h2>
+<p data-reveal>The app checks your settings as you change them and warns you when a combination is likely to cause sensory blur:</p>
+<ul data-reveal>
+  <li>The pause between letters must be longer than the pause between dots, or letters run together.</li>
+  <li>It should ideally be at least twice as long, so letter boundaries are easy to feel.</li>
+  <li>The pause between words must be longer than the pause between letters.</li>
+  <li>Taps shorter than 20 ms may be too weak on phones with older motors.</li>
+  <li>A start tick almost as strong as a dot may be mistaken for one.</li>
+</ul>
+
+<h2 data-reveal>How training works</h2>
+<p data-reveal>Each session is ten questions. A question vibrates, then the screen shows only a pulsing circle so nobody can read the answer off the display. You answer by tapping a dot, typing, or speaking. The app understands spoken answers like "bee", "see" or "the letter q". You get the result as vibration too: two light taps for correct, one long buzz for wrong.</p>
+<ul data-reveal>
+  <li><strong>Unlocking:</strong> a level is mastered when at least 80% of your last 20 answers are correct, with at least 10 answers. That unlocks the next level.</li>
+  <li><strong>Adaptive practice:</strong> every letter has a weight. New letters start at 2. Letters you get wrong grow towards 4, letters you always get right shrink towards 1. Heavier letters come up more often.</li>
+  <li><strong>No repeats:</strong> the same question never appears twice in a row.</li>
+</ul>
+
+<h2 data-reveal>How progress is measured</h2>
+<p data-reveal>Every answer is saved on the phone with what was asked, what you answered, how long you took and the speed you were using. From that the app calculates:</p>
+<ul data-reveal>
+  <li><strong>Accuracy:</strong> correct answers divided by all answers.</li>
+  <li><strong>Day streak:</strong> days in a row with practice, ending today or yesterday.</li>
+  <li><strong>Reading speed:</strong> correctly read letters divided by 5, per minute of vibration felt. For example, reading "cat" correctly from 12 seconds of vibration is 3 words per minute.</li>
+  <li><strong>Letters to focus on:</strong> letters with at least three tries and under 70% accuracy.</li>
+</ul>
+</article>
+<nav class="pager wrap" aria-label="Chapter navigation"><a class="prev" href="inspiration.html"><small>Previous chapter</small><strong>What inspired us</strong></a><a class="next" href="what.html"><small>Next chapter</small><strong>What we're building</strong></a></nav>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>HaptiBraille: Braille you can feel, on the phone you already have.</p>
+    <p><a class="link" href="https://github.com/rbksh/HaptiBraille/raw/main/main-v1/release/HaptiBraille.apk" download="HaptiBraille.apk">Download for Android</a> &nbsp; <a class="link" href="https://github.com/rbksh/HaptiBraille">Source on GitHub</a></p>
+    <p class="muted">Android 7 and newer. No iPhone version yet.</p>
+  </div>
+</footer>
+<script src="assets/js/site.js" defer></script>
+</body>
+</html>

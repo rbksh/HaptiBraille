@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The problem | HaptiBraille</title>
+<meta name="description" content="Reading a message shouldn't mean sharing it with everyone nearby, or buying a device that costs more than a month's wages.">
+<meta name="theme-color" content="#0e1626">
+<meta property="og:title" content="The problem | HaptiBraille">
+<meta property="og:description" content="Reading a message shouldn't mean sharing it with everyone nearby, or buying a device that costs more than a month's wages.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&display=swap">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body data-page="problem">
+<a class="skip" href="#main">Skip to content</a>
+<canvas id="field" aria-hidden="true"></canvas>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="HaptiBraille home"><span data-cell="125"></span>HaptiBraille</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="index.html#story">The story</a>
+      <a href="index.html#try">Try it</a>
+      <a href="tech.html">Tech</a>
+    </nav>
+    <a class="btn btn-amber" href="https://github.com/rbksh/HaptiBraille/raw/main/main-v1/release/HaptiBraille.apk" download="HaptiBraille.apk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg><span>Download<span class="hide-sm"> for Android</span></span></a>
+  </div>
+</header>
+<nav class="rail" aria-label="Chapters">
+  <div class="wrap">
+    <ol>
+      <li><a href="problem.html" aria-current="page"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="1"></span></span>The problem</a></li>
+      <li><a href="solution.html"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="12"></span></span>The solution</a></li>
+      <li><a href="audience.html"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="14"></span></span>Who it's for</a></li>
+      <li><a href="why.html"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="145"></span></span>Why we do it</a></li>
+      <li><a href="inspiration.html"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="15"></span></span>Inspiration</a></li>
+      <li><a href="how.html"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="124"></span></span>How it works</a></li>
+      <li><a href="what.html"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="1245"></span></span>What we build</a></li>
+      <li><a href="tech.html"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="125"></span></span>Tech stack</a></li>
+    </ol>
+    <p class="rail-mobile">Chapter <strong>1</strong> of 8: <strong>The problem</strong></p>
+  </div>
+</nav>
+<main id="main">
+<header class="page-head wrap">
+  <span class="cell-pair" aria-hidden="true"><span data-cell="3456" data-play></span><span data-cell="1" data-play></span></span>
+  <h1 data-load style="--d:.05s">The problem</h1>
+  <p class="lead" data-load style="--d:.15s">Reading a message shouldn't mean sharing it with everyone nearby, or buying a device that costs more than a month's wages.</p>
+</header>
+<article class="prose wrap">
+<h2 data-reveal>Two options, and both let people down</h2>
+<p data-reveal>Today a blind or deafblind person who wants to read a message on their phone has two main tools. Each one fails in a way that matters.</p>
+<div class="split">
+  <div data-reveal>
+    <h3>Screen readers speak out loud</h3>
+    <p class="muted">TalkBack on Android and VoiceOver on iPhone read the screen aloud. They are free and built in, but:</p>
+    <ul>
+      <li><strong>There is no privacy.</strong> Everyone nearby hears your bank code, your doctor's message, your private chat.</li>
+      <li><strong>They don't work for deafblind people,</strong> who cannot hear the voice at all.</li>
+      <li><strong>They struggle in noise</strong>: on a bus, in a market, at a station.</li>
+    </ul>
+  </div>
+  <div data-reveal style="--d:.08s">
+    <h3>Braille displays cost a fortune</h3>
+    <p class="muted">A refreshable Braille display is a separate device with tiny pins that rise and fall to form Braille under your fingers. It is private and works without sound, but:</p>
+    <ul>
+      <li><strong>It usually costs thousands of dollars,</strong> far more than the phone it connects to.</li>
+      <li><strong>It is another device</strong> to carry, charge and connect.</li>
+      <li><strong>Most people who need one can't get one,</strong> especially in lower-income countries.</li>
+    </ul>
+  </div>
+</div>
+
+<h2 data-reveal>So some people have no way to read at all</h2>
+<p data-reveal>Put those two facts together. A deafblind person who cannot afford a Braille display often has no practical way to read their own text messages. They wait for someone else to read them, which means giving up privacy and independence for something as ordinary as a message from family.</p>
+
+<h2 data-reveal>And a skill gap on top of it</h2>
+<figure class="figure" data-reveal>
+  <div class="ten" aria-hidden="true">
+    <span data-cell="123456" class="lit" data-play></span>
+    <span data-cell="123456"></span><span data-cell="123456"></span><span data-cell="123456"></span>
+    <span data-cell="123456"></span><span data-cell="123456"></span><span data-cell="123456"></span>
+    <span data-cell="123456"></span><span data-cell="123456"></span><span data-cell="123456"></span>
+  </div>
+  <figcaption>Our research suggests only about 1 in 10 blind and deafblind people can recognise vibration patterns and turn them into text today.</figcaption>
+</figure>
+<p data-reveal>That means even a perfect technology isn't enough on its own. If reading by vibration is going to help people, they also need an easy way to <em>learn</em> it, at their own pace, without a teacher next to them.</p>
+
+<h2 data-reveal>What this looks like day to day</h2>
+<ul data-reveal>
+  <li>A one-time bank code is read out loud on a crowded bus.</li>
+  <li>A deafblind person waits hours for a relative to come and read their messages.</li>
+  <li>A shopkeeper wants to say something simple, and there is no way for the message to reach the person in front of them.</li>
+</ul>
+</article>
+<nav class="pager wrap" aria-label="Chapter navigation"><a class="prev" href="index.html"><small>Back to</small><strong>The start</strong></a><a class="next" href="solution.html"><small>Next chapter</small><strong>The solution</strong></a></nav>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>HaptiBraille: Braille you can feel, on the phone you already have.</p>
+    <p><a class="link" href="https://github.com/rbksh/HaptiBraille/raw/main/main-v1/release/HaptiBraille.apk" download="HaptiBraille.apk">Download for Android</a> &nbsp; <a class="link" href="https://github.com/rbksh/HaptiBraille">Source on GitHub</a></p>
+    <p class="muted">Android 7 and newer. No iPhone version yet.</p>
+  </div>
+</footer>
+<script src="assets/js/site.js" defer></script>
+</body>
+</html>

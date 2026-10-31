@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The solution | HaptiBraille</title>
+<meta name="description" content="Play Braille as a rhythm on the vibration motor every phone already has, and teach people to read it.">
+<meta name="theme-color" content="#0e1626">
+<meta property="og:title" content="The solution | HaptiBraille">
+<meta property="og:description" content="Play Braille as a rhythm on the vibration motor every phone already has, and teach people to read it.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&display=swap">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body data-page="solution">
+<a class="skip" href="#main">Skip to content</a>
+<canvas id="field" aria-hidden="true"></canvas>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="HaptiBraille home"><span data-cell="125"></span>HaptiBraille</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="index.html#story">The story</a>
+      <a href="index.html#try">Try it</a>
+      <a href="tech.html">Tech</a>
+    </nav>
+    <a class="btn btn-amber" href="https://github.com/rbksh/HaptiBraille/raw/main/main-v1/release/HaptiBraille.apk" download="HaptiBraille.apk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg><span>Download<span class="hide-sm"> for Android</span></span></a>
+  </div>
+</header>
+<nav class="rail" aria-label="Chapters">
+  <div class="wrap">
+    <ol>
+      <li><a href="problem.html" class="is-past"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="1"></span></span>The problem</a></li>
+      <li><a href="solution.html" aria-current="page"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="12"></span></span>The solution</a></li>
+      <li><a href="audience.html"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="14"></span></span>Who it's for</a></li>
+      <li><a href="why.html"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="145"></span></span>Why we do it</a></li>
+      <li><a href="inspiration.html"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="15"></span></span>Inspiration</a></li>
+      <li><a href="how.html"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="124"></span></span>How it works</a></li>
+      <li><a href="what.html"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="1245"></span></span>What we build</a></li>
+      <li><a href="tech.html"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="125"></span></span>Tech stack</a></li>
+    </ol>
+    <p class="rail-mobile">Chapter <strong>2</strong> of 8: <strong>The solution</strong></p>
+  </div>
+</nav>
+<main id="main">
+<header class="page-head wrap">
+  <span class="cell-pair" aria-hidden="true"><span data-cell="3456" data-play></span><span data-cell="12" data-play></span></span>
+  <h1 data-load style="--d:.05s">The solution</h1>
+  <p class="lead" data-load style="--d:.15s">Play Braille as a rhythm on the vibration motor every phone already has, and teach people to read it.</p>
+</header>
+<article class="prose wrap">
+<h2 data-reveal>Braille in one minute</h2>
+<p data-reveal>Braille is a reading system made of raised dots that people feel with their fingertips. Each letter sits in a small grid called a <strong>cell</strong>, with room for six dots numbered like this:</p>
+<figure class="figure" data-reveal>
+  <div style="display:flex;flex-wrap:wrap;gap:48px;align-items:center">
+    <div class="numbered-cell" aria-hidden="true">
+      <span>1</span><span>4</span><span>2</span><span>5</span><span>3</span><span>6</span>
+    </div>
+    <div class="samples">
+      <figure><span data-cell="1" data-play></span><figcaption>a<small>dot 1</small></figcaption></figure>
+      <figure><span data-cell="12" data-play></span><figcaption>b<small>dots 1, 2</small></figcaption></figure>
+      <figure><span data-cell="14" data-play></span><figcaption>c<small>dots 1, 4</small></figcaption></figure>
+      <figure><span data-cell="125" data-play></span><figcaption>h<small>dots 1, 2, 5</small></figcaption></figure>
+    </div>
+  </div>
+  <figcaption>Every letter is a different pattern of raised dots. Dots 1 to 3 run down the left side, 4 to 6 down the right.</figcaption>
+</figure>
+
+<h2 data-reveal>From space to time</h2>
+<p data-reveal>A phone has one vibration motor, so it can't make six dots at once. Instead, HaptiBraille plays the six dots <strong>one after another</strong>, like a short drum rhythm. A raised dot becomes a tap. A flat dot becomes a silence. A soft tick at the start tells you a new letter has begun, so you always know where to start counting.</p>
+
+<div class="instrument" data-instrument data-text="h" data-reveal aria-label="The letter h played as a rhythm">
+  <div class="instrument-stage">
+    <span class="cell" aria-hidden="true"></span>
+    <div>
+      <div class="instrument-readout" aria-hidden="true"></div>
+      <div class="instrument-dots" aria-hidden="true"></div>
+    </div>
+  </div>
+  <div class="strip" role="img" aria-label="Timeline"><span class="strip-head"></span></div>
+  <ul class="strip-legend" aria-hidden="true">
+    <li><i></i>Tap: a raised dot</li>
+    <li><i class="k"></i>Soft tick: a letter starts</li>
+    <li><i class="s"></i>Silence</li>
+  </ul>
+  <button class="btn btn-amber" type="button" data-play-button><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12h2l2-5 3 10 3-14 3 14 3-10 2 5h2"/></svg><span>Play the letter h</span></button>
+  <p class="instrument-status" aria-live="polite"></p>
+</div>
+<p data-reveal class="muted" style="margin-top:20px">For the letter h, you feel: tick, then tap, tap, silence, silence, tap, silence. Beats 1, 2 and 5 were taps, so the dots are 1, 2, 5: that's h. With the standard settings this takes just under one second.</p>
+
+<h2 data-reveal>Tuned to each person's touch</h2>
+<p data-reveal>If taps come too fast or the pauses are too short, the brain can't tell them apart. Three quick taps start to feel like one long buzz. We call this <strong>sensory blur</strong>, and it is the main thing that makes vibration reading hard.</p>
+<p data-reveal>So every timing in HaptiBraille can be changed: how long a tap lasts, how long a flat dot's silence lasts, and the pauses between dots, letters and words. There are three ready-made speeds, and the app warns you if a setting is likely to blur letters together.</p>
+<div class="table-wrap" data-reveal>
+  <table>
+    <caption class="visually-hidden">Speed presets in milliseconds</caption>
+    <thead><tr><th scope="col">Speed</th><th scope="col">Tap</th><th scope="col">Flat dot</th><th scope="col">Between dots</th><th scope="col">Between letters</th><th scope="col">Between words</th></tr></thead>
+    <tbody>
+      <tr><td>Beginner</td><td>50 ms</td><td>80 ms</td><td>150 ms</td><td>500 ms</td><td>1000 ms</td></tr>
+      <tr><td>Standard</td><td>40 ms</td><td>50 ms</td><td>100 ms</td><td>300 ms</td><td>600 ms</td></tr>
+      <tr><td>Fast</td><td>30 ms</td><td>40 ms</td><td>70 ms</td><td>200 ms</td><td>450 ms</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2 data-reveal>Learning is part of the product</h2>
+<p data-reveal>Because so few people can read vibrations today, HaptiBraille includes a full training course. You start by feeling single dots, move on to letters, then to short words. You unlock each level by reaching 80% accuracy, and the letters you find hardest come up more often.</p>
+
+<h2 data-reveal>Talking, not just reading</h2>
+<p data-reveal>Reading is only half of a conversation. In <strong>Talk to me</strong>, a hearing person speaks into the phone. HaptiBraille turns their words into text and plays them as Braille vibrations, so a deafblind person can understand someone who has never learned Braille or sign language.</p>
+</article>
+<nav class="pager wrap" aria-label="Chapter navigation"><a class="prev" href="problem.html"><small>Previous chapter</small><strong>The problem</strong></a><a class="next" href="audience.html"><small>Next chapter</small><strong>Who it's for</strong></a></nav>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>HaptiBraille: Braille you can feel, on the phone you already have.</p>
+    <p><a class="link" href="https://github.com/rbksh/HaptiBraille/raw/main/main-v1/release/HaptiBraille.apk" download="HaptiBraille.apk">Download for Android</a> &nbsp; <a class="link" href="https://github.com/rbksh/HaptiBraille">Source on GitHub</a></p>
+    <p class="muted">Android 7 and newer. No iPhone version yet.</p>
+  </div>
+</footer>
+<script src="assets/js/site.js" defer></script>
+</body>
+</html>

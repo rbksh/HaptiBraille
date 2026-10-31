@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What we're building | HaptiBraille</title>
+<meta name="description" content="An Android app for reading, conversation and learning, designed from the start for people who can't rely on sight or sound.">
+<meta name="theme-color" content="#0e1626">
+<meta property="og:title" content="What we're building | HaptiBraille">
+<meta property="og:description" content="An Android app for reading, conversation and learning, designed from the start for people who can't rely on sight or sound.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&display=swap">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body data-page="what">
+<a class="skip" href="#main">Skip to content</a>
+<canvas id="field" aria-hidden="true"></canvas>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="HaptiBraille home"><span data-cell="125"></span>HaptiBraille</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="index.html#story">The story</a>
+      <a href="index.html#try">Try it</a>
+      <a href="tech.html">Tech</a>
+    </nav>
+    <a class="btn btn-amber" href="https://github.com/rbksh/HaptiBraille/raw/main/main-v1/release/HaptiBraille.apk" download="HaptiBraille.apk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg><span>Download<span class="hide-sm"> for Android</span></span></a>
+  </div>
+</header>
+<nav class="rail" aria-label="Chapters">
+  <div class="wrap">
+    <ol>
+      <li><a href="problem.html" class="is-past"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="1"></span></span>The problem</a></li>
+      <li><a href="solution.html" class="is-past"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="12"></span></span>The solution</a></li>
+      <li><a href="audience.html" class="is-past"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="14"></span></span>Who it's for</a></li>
+      <li><a href="why.html" class="is-past"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="145"></span></span>Why we do it</a></li>
+      <li><a href="inspiration.html" class="is-past"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="15"></span></span>Inspiration</a></li>
+      <li><a href="how.html" class="is-past"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="124"></span></span>How it works</a></li>
+      <li><a href="what.html" aria-current="page"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="1245"></span></span>What we build</a></li>
+      <li><a href="tech.html"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="125"></span></span>Tech stack</a></li>
+    </ol>
+    <p class="rail-mobile">Chapter <strong>7</strong> of 8: <strong>What we build</strong></p>
+  </div>
+</nav>
+<main id="main">
+<header class="page-head wrap">
+  <span class="cell-pair" aria-hidden="true"><span data-cell="3456" data-play></span><span data-cell="1245" data-play></span></span>
+  <h1 data-load style="--d:.05s">What we're building</h1>
+  <p class="lead" data-load style="--d:.15s">An Android app for reading, conversation and learning, designed from the start for people who can't rely on sight or sound.</p>
+</header>
+<article class="prose wrap">
+<div class="features">
+  <div class="feature" data-reveal>
+    <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9h11a4 4 0 0 1 4 4v19a3 3 0 0 0-3-3H6z"/><path d="M34 9H23a4 4 0 0 0-4 4v19a3 3 0 0 1 3-3h12z"/></svg>
+    <h3>Read</h3>
+    <p>Type, paste or dictate any text and feel it as Braille. A demo notification button shows how incoming messages will be read. A large Braille cell lights each dot as it vibrates, the current letter is highlighted, and a progress bar shows how far along you are.</p>
+  </div>
+  <div class="feature" data-reveal>
+    <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="14" y="4" width="12" height="20" rx="6"/><path d="M8 19a12 12 0 0 0 24 0"/><path d="M20 31v5"/></svg>
+    <h3>Talk to me</h3>
+    <p>Hand the phone to a hearing person. They tap the microphone and speak. When they stop, their words are turned into text and played as vibrations straight away. Earlier messages stay in a list so you can feel them again.</p>
+  </div>
+  <div class="feature" data-reveal>
+    <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="20" cy="20" r="15"/><circle cx="20" cy="20" r="9"/><circle cx="20" cy="20" r="3"/></svg>
+    <h3>Train</h3>
+    <p>Three levels: single dots, letters A to Z, then three-letter words. Each session has ten questions with feedback by vibration and on screen. Reach 80% to unlock the next level. An Explore the alphabet grid lets you feel any letter with no score.</p>
+  </div>
+  <div class="feature" data-reveal>
+    <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 34h30"/><path d="M8 26l8-8 6 5 11-12"/><circle cx="33" cy="11" r="2"/></svg>
+    <h3>Progress</h3>
+    <p>Day streak, accuracy, reading speed and practice time. Charts of accuracy and speed by day, a bar chart of accuracy for every letter, letters to focus on, and a table view of the same numbers for screen readers. Export everything as JSON with one tap.</p>
+  </div>
+  <div class="feature" data-reveal>
+    <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 11h16M28 11h6M6 20h6M18 20h16M6 29h20M32 29h2"/><circle cx="25" cy="11" r="3"/><circle cx="15" cy="20" r="3"/><circle cx="29" cy="29" r="3"/></svg>
+    <h3>Settings</h3>
+    <p>Beginner, Standard and Fast speeds, plus a slider for every timing, tap strength and the start-of-letter tick. Live warnings appear when a setting is likely to blur letters. A sample button lets you feel the change immediately.</p>
+  </div>
+</div>
+
+<h2 data-reveal>Designed for the people using it</h2>
+<ul data-reveal>
+  <li>High-contrast dark design, large text and big touch targets.</li>
+  <li>Every button, dot and chart has a spoken label for TalkBack, and sliders read out values like "300 milliseconds".</li>
+  <li>Results and live transcripts are announced automatically by screen readers.</li>
+  <li>All animation switches off when the phone's "remove animations" setting is on.</li>
+  <li>Right and wrong answers are signalled by vibration, so deafblind learners don't need the screen.</li>
+  <li>Progress and settings are saved on the phone only. HaptiBraille doesn't send them anywhere.</li>
+</ul>
+
+<h2 data-reveal>What isn't done yet</h2>
+<p data-reveal>We'd rather be clear about this than over-promise:</p>
+<ul data-reveal>
+  <li><strong>iPhone:</strong> the vibration format for iPhone is prepared, but the code that plays it hasn't been written. Android only for now.</li>
+  <li><strong>Real notifications:</strong> the notification button is a demo. Reading real incoming notifications comes next.</li>
+  <li><strong>Grade 2 Braille:</strong> the app uses Grade 1, which spells every letter. Contractions for experienced readers come later.</li>
+  <li><strong>Expert review:</strong> the punctuation table follows Unified English Braille but still needs checking by a certified transcriber.</li>
+  <li><strong>User testing:</strong> the default timings are informed estimates. We want to tune them with blind and deafblind testers.</li>
+</ul>
+</article>
+<nav class="pager wrap" aria-label="Chapter navigation"><a class="prev" href="how.html"><small>Previous chapter</small><strong>How it works</strong></a><a class="next" href="tech.html"><small>Next chapter</small><strong>The tech stack</strong></a></nav>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>HaptiBraille: Braille you can feel, on the phone you already have.</p>
+    <p><a class="link" href="https://github.com/rbksh/HaptiBraille/raw/main/main-v1/release/HaptiBraille.apk" download="HaptiBraille.apk">Download for Android</a> &nbsp; <a class="link" href="https://github.com/rbksh/HaptiBraille">Source on GitHub</a></p>
+    <p class="muted">Android 7 and newer. No iPhone version yet.</p>
+  </div>
+</footer>
+<script src="assets/js/site.js" defer></script>
+</body>
+</html>
