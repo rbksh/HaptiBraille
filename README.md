@@ -1,6 +1,7 @@
 # HaptiBraille
 
 **Read any text through your phone's vibration — privately, without sound, without a screen, and without buying expensive hardware.**<br>
+🌐 **Website:** [rbksh.github.io/HaptiBraille](https://rbksh.github.io/HaptiBraille/) — the full story, a live demo, and the Android download<br>
 Contributors: Shesh Shiromani, Manish Singh, Bhuvan M, Rajeev<br>
 HaptiBraille is a mobile app (Android now, iOS planned) that turns written text into
 **Braille made of vibrations**. A person who is blind, deafblind or has low vision can hold the
