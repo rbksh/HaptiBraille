@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HaptiBraille: feel every word</title>
+<meta name="description" content="HaptiBraille turns text into Braille you feel through your phone's vibration. Free for Android.">
+<meta name="theme-color" content="#0e1626">
+<meta property="og:title" content="HaptiBraille: feel every word">
+<meta property="og:description" content="HaptiBraille turns text into Braille you feel through your phone's vibration. Free for Android.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&display=swap">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body data-page="index">
+<a class="skip" href="#main">Skip to content</a>
+<canvas id="field" aria-hidden="true"></canvas>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="HaptiBraille home"><span data-cell="125"></span>HaptiBraille</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="index.html#story">The story</a>
+      <a href="index.html#try">Try it</a>
+      <a href="tech.html">Tech</a>
+    </nav>
+    <a class="btn btn-amber" href="https://github.com/rbksh/HaptiBraille/raw/main/main-v1/release/HaptiBraille.apk" download="HaptiBraille.apk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg><span>Download<span class="hide-sm"> for Android</span></span></a>
+  </div>
+</header>
+<main id="main">
+<section class="hero" aria-labelledby="hero-title">
+  <div class="wrap">
+    <div>
+      <h1 id="hero-title" data-load>Feel every word.</h1>
+      <p class="lead" data-load style="--d:.08s">HaptiBraille turns text into Braille you feel through your phone's vibration, so people who are blind or deafblind can read messages privately. No sound, no screen, no extra hardware.</p>
+      <div class="hero-actions" data-load style="--d:.16s">
+        <a class="btn btn-amber btn-large" href="https://github.com/rbksh/HaptiBraille/raw/main/main-v1/release/HaptiBraille.apk" download="HaptiBraille.apk">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+          <span>Download for Android<span class="btn-sub">Free APK, 51 MB</span></span>
+        </a>
+        <a class="btn btn-quiet btn-large" href="problem.html">Read the story</a>
+      </div>
+      <p class="platform-note" data-load style="--d:.24s">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>
+        <span><strong>Android only for now.</strong> Works on Android 7 and newer. There is no iPhone version yet.</span>
+      </p>
+    </div>
+
+    <div class="instrument" id="try" data-instrument data-load style="--d:.12s" aria-labelledby="try-title">
+      <h2 id="try-title" class="visually-hidden">Try it: feel a word as Braille</h2>
+      <div class="instrument-stage">
+        <span class="cell" aria-hidden="true"></span>
+        <div>
+          <div class="instrument-readout" aria-hidden="true"></div>
+          <div class="instrument-dots" aria-hidden="true"></div>
+        </div>
+      </div>
+      <div class="strip" role="img" aria-label="Timeline">
+        <span class="strip-head"></span>
+      </div>
+      <ul class="strip-legend" aria-hidden="true">
+        <li><i></i>Tap: a raised dot</li>
+        <li><i class="k"></i>Soft tick: a letter starts</li>
+        <li><i class="s"></i>Silence: a flat dot or a pause</li>
+      </ul>
+      <div class="instrument-controls">
+        <label for="try-word">Type a word to feel</label>
+        <input id="try-word" type="text" value="hello" maxlength="24" autocomplete="off" autocapitalize="none" spellcheck="false">
+        <button class="btn btn-amber" type="button" data-play-button><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12h2l2-5 3 10 3-14 3 14 3-10 2 5h2"/></svg><span>Feel it</span></button>
+        <fieldset class="speed">
+          <legend>Speed</legend>
+          <label><input type="radio" name="speed" value="beginner"><span>Beginner</span></label>
+          <label><input type="radio" name="speed" value="standard" checked><span>Standard</span></label>
+          <label><input type="radio" name="speed" value="fast"><span>Fast</span></label>
+        </fieldset>
+      </div>
+      <p class="instrument-status" aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="story" aria-labelledby="story-title">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <h2 id="story-title">The story, in eight chapters</h2>
+      <p class="muted">Read them in order, or jump to the part you care about. Each chapter number is written in Braille: the number sign, then a letter.</p>
+    </div>
+    <ol class="chapters">
+      <li data-reveal style="--d:0.00s"><a href="problem.html"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="1"></span></span><h3>The problem</h3><p>Screen readers aren't private and don't work for deafblind people. Braille displays cost thousands.</p></a></li>
+      <li data-reveal style="--d:0.04s"><a href="solution.html"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="12"></span></span><h3>The solution</h3><p>Six Braille dots played one after another: a tap for a raised dot, a silence for a flat one.</p></a></li>
+      <li data-reveal style="--d:0.08s"><a href="audience.html"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="14"></span></span><h3>Who it's for</h3><p>Deafblind, blind and low-vision people, plus families, carers and teachers.</p></a></li>
+      <li data-reveal style="--d:0.12s"><a href="why.html"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="145"></span></span><h3>Why we're doing this</h3><p>Privacy, cost, independence, and a skill that only 1 in 10 people have had the chance to learn.</p></a></li>
+      <li data-reveal style="--d:0.16s"><a href="inspiration.html"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="15"></span></span><h3>What inspired us</h3><p>Night writing, Louis Braille, Morse code, the tap code, and modern phone vibration.</p></a></li>
+      <li data-reveal style="--d:0.20s"><a href="how.html"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="124"></span></span><h3>How it works</h3><p>The five-step pipeline, the timing inside one letter, training rules and progress maths.</p></a></li>
+      <li data-reveal style="--d:0.24s"><a href="what.html"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="1245"></span></span><h3>What we're building</h3><p>Read, Talk to me, Train, Progress and Settings, and what isn't finished yet.</p></a></li>
+      <li data-reveal style="--d:0.28s"><a href="tech.html"><span class="cell-pair" aria-hidden="true"><span data-cell="3456"></span><span data-cell="125"></span></span><h3>The tech stack</h3><p>Languages, tools, packages, architecture and the key code.</p></a></li>
+    </ol>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="install-title">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <h2 id="install-title">Install it in three steps</h2>
+      <p class="muted">HaptiBraille isn't on the Play Store yet, so you install the app file directly. It takes about a minute.</p>
+    </div>
+    <ol class="steps">
+      <li data-reveal>
+        <h3>Download</h3>
+        <p>On your Android phone, tap <a class="link" href="https://github.com/rbksh/HaptiBraille/raw/main/main-v1/release/HaptiBraille.apk" download="HaptiBraille.apk">Download for Android</a>. The file is called HaptiBraille.apk.</p>
+      </li>
+      <li data-reveal style="--d:.08s">
+        <h3>Allow the install</h3>
+        <p>Open the file. If Android asks, allow installs from your browser. If Play Protect warns about an unknown app, choose More details, then Install anyway.</p>
+      </li>
+      <li data-reveal style="--d:.16s">
+        <h3>Start learning</h3>
+        <p>Open HaptiBraille and tap Start learning. The first level teaches you to feel single dots in a few minutes.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="ios-title">
+  <div class="wrap">
+    <div class="callout" data-reveal>
+      <div>
+        <h2 id="ios-title">Using an iPhone?</h2>
+        <p>The iPhone version isn't ready yet. The app is built with Flutter, so the same code will run on iOS once the iPhone vibration code is finished. Until then, you can try the rhythm above in any browser and watch the dots.</p>
+      </div>
+      <a class="btn btn-quiet" href="https://github.com/rbksh/HaptiBraille">See the code on GitHub</a>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>HaptiBraille: Braille you can feel, on the phone you already have.</p>
+    <p><a class="link" href="https://github.com/rbksh/HaptiBraille/raw/main/main-v1/release/HaptiBraille.apk" download="HaptiBraille.apk">Download for Android</a> &nbsp; <a class="link" href="https://github.com/rbksh/HaptiBraille">Source on GitHub</a></p>
+    <p class="muted">Android 7 and newer. No iPhone version yet.</p>
+  </div>
+</footer>
+<script src="assets/js/site.js" defer></script>
+</body>
+</html>
