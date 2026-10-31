@@ -17,7 +17,13 @@ deafblind and low-vision users.
   per-letter accuracy, daily table, JSON export for an AI agent.
 - **Settings** – presets and sliders for every haptic timing, dot strength, start-of-letter tick.
 
-## Run
+## Install on a phone (no computer needed)
+
+Download [`release/HaptiBraille.apk`](release/HaptiBraille.apk) on an Android phone (Android 7+),
+open it and tap **Install** (allow installs from this source if asked). Speech-to-text needs
+internet on most phones.
+
+## Run from source
 
 ```
 flutter pub get
