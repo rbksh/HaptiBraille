@@ -5,11 +5,11 @@ import '../../../domain/entities/haptic_sequence.dart';
 import '../../../domain/services/i_haptic_player.dart';
 import 'haptic_platform_codec.dart';
 
-/// [IHapticPlayer] backed by the native "viberead/haptics" channel.
+/// [IHapticPlayer] backed by the native "haptibraille/haptics" channel.
 /// Android: `HapticChannel.kt`. iOS: not implemented yet.
 class MethodChannelHapticPlayer implements IHapticPlayer {
   MethodChannelHapticPlayer({MethodChannel? channel})
-      : _channel = channel ?? const MethodChannel('viberead/haptics');
+      : _channel = channel ?? const MethodChannel('haptibraille/haptics');
 
   final MethodChannel _channel;
   HapticCapabilities? _capabilities;

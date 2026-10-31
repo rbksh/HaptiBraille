@@ -26,19 +26,18 @@ class HapticTranslationEngine {
   ) {
     final out = _SequenceBuilder();
     final timings = <TokenTiming>[];
-    var hasEmittedCell = false;
     var wordBreakPending = false;
 
     for (final token in tokens) {
       if (token.isWordBreak) {
-        wordBreakPending = hasEmittedCell;
+        wordBreakPending = out.cells.isNotEmpty;
         continue;
       }
       if (token.cells.isEmpty) continue;
 
       int? startMs;
       for (final cell in token.cells) {
-        if (hasEmittedCell) {
+        if (out.cells.isNotEmpty) {
           out.silence(wordBreakPending
               ? profile.spacePause.inMilliseconds
               : profile.interCharPause.inMilliseconds);
@@ -46,7 +45,6 @@ class HapticTranslationEngine {
         }
         startMs ??= out.cursorMs;
         _emitCell(out, cell, profile);
-        hasEmittedCell = true;
       }
 
       timings.add(TokenTiming(
@@ -56,16 +54,15 @@ class HapticTranslationEngine {
       ));
     }
 
-    return HapticSequence(segments: out.segments, tokenTimings: timings);
+    return out.build(timings);
   }
 
   /// A single cell on its own – training levels 1 and 2.
   HapticSequence buildCell(BrailleCell cell, HapticProfileModel profile) {
     final out = _SequenceBuilder();
     _emitCell(out, cell, profile);
-    return HapticSequence(
-      segments: out.segments,
-      tokenTimings: [TokenTiming(sourceIndex: 0, startMs: 0, endMs: out.cursorMs)],
+    return out.build(
+      [TokenTiming(sourceIndex: 0, startMs: 0, endMs: out.cursorMs)],
     );
   }
 
@@ -79,26 +76,31 @@ class HapticTranslationEngine {
 
   void _emitCell(_SequenceBuilder out, BrailleCell cell, HapticProfileModel p) {
     final intra = p.intraCharPause.inMilliseconds;
+    final cellIndex = out.cells.length;
+    out.cells.add(cell);
 
     if (p.cellAnchorEnabled) {
-      out.pulse(
-        HapticSegmentKind.anchor,
-        p.anchorDuration.inMilliseconds,
-        p.anchorIntensity,
-        p.anchorSharpness,
-      );
+      out.pulse(HapticSegment(
+        kind: HapticSegmentKind.anchor,
+        durationMs: p.anchorDuration.inMilliseconds,
+        intensity: p.anchorIntensity,
+        sharpness: p.anchorSharpness,
+        cellIndex: cellIndex,
+      ));
       out.silence(intra);
     }
 
     for (var slot = 0; slot < BrailleCell.dotCount; slot++) {
       if (slot > 0) out.silence(intra);
       if (cell.isRaisedAt(slot)) {
-        out.pulse(
-          HapticSegmentKind.dot,
-          p.dotDuration.inMilliseconds,
-          p.intensity,
-          p.sharpness,
-        );
+        out.pulse(HapticSegment(
+          kind: HapticSegmentKind.dot,
+          durationMs: p.dotDuration.inMilliseconds,
+          intensity: p.intensity,
+          sharpness: p.sharpness,
+          cellIndex: cellIndex,
+          slot: slot,
+        ));
       } else {
         out.silence(p.emptySlotDuration.inMilliseconds);
       }
@@ -108,6 +110,7 @@ class HapticTranslationEngine {
 
 class _SequenceBuilder {
   final List<HapticSegment> segments = [];
+  final List<BrailleCell> cells = [];
   int cursorMs = 0;
 
   void silence(int ms) {
@@ -121,14 +124,12 @@ class _SequenceBuilder {
     }
   }
 
-  void pulse(HapticSegmentKind kind, int ms, double intensity, double sharpness) {
-    if (ms <= 0) return;
-    cursorMs += ms;
-    segments.add(HapticSegment(
-      kind: kind,
-      durationMs: ms,
-      intensity: intensity,
-      sharpness: sharpness,
-    ));
+  void pulse(HapticSegment segment) {
+    if (segment.durationMs <= 0) return;
+    cursorMs += segment.durationMs;
+    segments.add(segment);
   }
+
+  HapticSequence build(List<TokenTiming> timings) =>
+      HapticSequence(segments: segments, tokenTimings: timings, cells: cells);
 }

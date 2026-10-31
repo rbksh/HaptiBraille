@@ -1,4 +1,4 @@
-package com.viberead.viberead
+package com.haptibraille.app
 
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine

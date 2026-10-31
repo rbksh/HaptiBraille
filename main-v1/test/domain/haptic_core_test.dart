@@ -1,9 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:viberead/domain/engine/braille_translator.dart';
-import 'package:viberead/domain/engine/haptic_translation_engine.dart';
-import 'package:viberead/domain/entities/braille_cell.dart';
-import 'package:viberead/domain/entities/haptic_profile_model.dart';
-import 'package:viberead/domain/entities/haptic_sequence.dart';
+import 'package:haptibraille/domain/engine/braille_translator.dart';
+import 'package:haptibraille/domain/engine/haptic_translation_engine.dart';
+import 'package:haptibraille/domain/entities/braille_cell.dart';
+import 'package:haptibraille/domain/entities/haptic_profile_model.dart';
+import 'package:haptibraille/domain/entities/haptic_sequence.dart';
 
 void main() {
   const translator = BrailleTranslator();

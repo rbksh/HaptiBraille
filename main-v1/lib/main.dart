@@ -1,29 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-import 'presentation/screens/haptic_test/haptic_test_screen.dart';
+import 'app.dart';
+import 'data/repositories/hive_repositories.dart';
+import 'presentation/providers/app_providers.dart';
 
-void main() {
-  runApp(const ProviderScope(child: VibeReadApp()));
-}
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  final settings = await Hive.openBox<dynamic>(HiveSettingsRepository.boxName);
+  final attempts = await Hive.openBox<dynamic>(HiveAnalyticsRepository.boxName);
 
-class VibeReadApp extends StatelessWidget {
-  const VibeReadApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    // High-contrast dark theme for low-vision users.
-    final theme = ThemeData(
-      useMaterial3: true,
-      colorScheme: const ColorScheme.highContrastDark(),
-      scaffoldBackgroundColor: Colors.black,
-    );
-    return MaterialApp(
-      title: 'VibeRead',
-      theme: theme,
-      darkTheme: theme,
-      themeMode: ThemeMode.dark,
-      home: const HapticTestScreen(),
-    );
-  }
+  runApp(ProviderScope(
+    overrides: [
+      settingsRepositoryProvider.overrideWithValue(HiveSettingsRepository(settings)),
+      analyticsRepositoryProvider.overrideWithValue(HiveAnalyticsRepository(attempts)),
+    ],
+    child: const HaptiBrailleApp(),
+  ));
 }

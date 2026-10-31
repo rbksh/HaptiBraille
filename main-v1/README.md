@@ -1,33 +1,37 @@
-# VibeRead – main-v1 (Flutter)
+# HaptiBraille
 
-Temporal vibrotactile Braille: text is translated to Grade 1 (UEB) Braille and
-played as a rhythm on the phone's single haptic motor.
+Read text through your phone's vibration motor, as temporal Braille. Built for blind,
+deafblind and low-vision users.
 
-## Status
+## Features
 
-- Translation engine (`lib/domain/engine/`) – ASCII → Grade 1 UEB, numeric/capital indicators.
-- `HapticProfileModel` – tunable timings (dot, empty slot, intra/inter-char, space) with
-  anti-"sensory blur" validation and JSON storage format.
-- `HapticTranslationEngine` – builds millisecond-exact waveforms.
-- Android native haptic channel (`android/.../HapticChannel.kt`) using `VibrationEffect.createWaveform`.
-- Haptic test screen with presets and timing sliders.
-- iOS (CoreHaptics), training module, analytics, Hive storage, AI agent – not yet built.
+- **Welcome + Home** – high-contrast dark UI, Atkinson Hyperlegible type, motion that respects
+  the system "remove animations" setting.
+- **Read** – type, paste, dictate or receive a demo notification, then feel it. An animated
+  Braille cell lights each dot as it vibrates.
+- **Talk to me** – a hearing person speaks; the message is transcribed and vibrated.
+- **Train** – Level 1 single dots → Level 2 letters → Level 3 three-letter words. 80% accuracy
+  over the last 20 answers unlocks the next level. Weak letters come up more often. Answers can be
+  typed or spoken; correct/incorrect is also signalled by vibration.
+- **Progress** – streak, accuracy, reading speed (WPM), practice time, accuracy and speed charts,
+  per-letter accuracy, daily table, JSON export for an AI agent.
+- **Settings** – presets and sliders for every haptic timing, dot strength, start-of-letter tick.
 
 ## Run
 
 ```
 flutter pub get
 flutter test
-flutter run          # with an Android phone connected (USB debugging on)
+flutter run        # Android phone with USB debugging on
 ```
 
 ## Layout
 
 ```
 lib/
-  domain/        entities, engine, service interfaces (pure Dart)
-  data/          platform channel + codecs
-  presentation/  Riverpod providers, screens
-android/         native HapticChannel.kt
-test/            unit + widget tests
+  core/          theme, motion, shared widgets (BrailleCellView, DotPicker…)
+  domain/        entities, Braille + haptic engines, curriculum, analytics (pure Dart)
+  data/          Hive repositories, Android haptic channel codec, speech-to-text, AI agent stub
+  presentation/  Riverpod providers/controllers and screens
+android/…/HapticChannel.kt   native VibrationEffect waveform playback
 ```

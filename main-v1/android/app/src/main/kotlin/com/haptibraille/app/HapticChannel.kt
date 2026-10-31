@@ -1,4 +1,4 @@
-package com.viberead.viberead
+package com.haptibraille.app
 
 import android.content.Context
 import android.os.Build
@@ -11,7 +11,7 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 
 /**
- * Native side of the "viberead/haptics" channel.
+ * Native side of the "haptibraille/haptics" channel.
  *
  * Plays pre-timed waveforms produced by the Dart HapticTranslationEngine.
  * All timing math lives in Dart; this class only hands the arrays to the OS
@@ -25,7 +25,7 @@ import io.flutter.plugin.common.MethodChannel
 class HapticChannel(context: Context) : MethodChannel.MethodCallHandler {
 
     companion object {
-        const val CHANNEL = "viberead/haptics"
+        const val CHANNEL = "haptibraille/haptics"
     }
 
     private val vibrator: Vibrator? =

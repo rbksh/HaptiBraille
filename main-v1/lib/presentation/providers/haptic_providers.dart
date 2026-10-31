@@ -6,6 +6,7 @@ import '../../domain/engine/haptic_translation_engine.dart';
 import '../../domain/entities/haptic_profile_model.dart';
 import '../../domain/services/i_haptic_player.dart';
 import '../../domain/services/i_text_processor.dart';
+import 'app_providers.dart';
 
 /// Swap point for the AI agent: override with an AgentTextProcessor later.
 final textProcessorProvider =
@@ -21,6 +22,16 @@ final hapticCapabilitiesProvider = FutureProvider<HapticCapabilities>(
   (ref) => ref.watch(hapticPlayerProvider).capabilities(),
 );
 
-// TODO: persist via a Hive-backed profile repository.
+class HapticProfileNotifier extends Notifier<HapticProfileModel> {
+  @override
+  HapticProfileModel build() => ref.watch(settingsRepositoryProvider).loadProfile();
+
+  void set(HapticProfileModel profile) {
+    state = profile;
+    ref.read(settingsRepositoryProvider).saveProfile(profile);
+  }
+}
+
+/// The user's haptic timings, persisted on every change.
 final hapticProfileProvider =
-    StateProvider<HapticProfileModel>((ref) => HapticProfileModel.standard);
+    NotifierProvider<HapticProfileNotifier, HapticProfileModel>(HapticProfileNotifier.new);
