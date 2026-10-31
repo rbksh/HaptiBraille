@@ -855,3 +855,29 @@ pre .s { color: var(--amber); }
   .cell i, .btn, .chapters a { transition: none; }
   .chapters a:hover .cell i.on { animation: none; }
 }
+
+/* ---------- Team ---------- */
+
+.team {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(16px, 3vw, 32px);
+}
+.team img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: 50% 25%;
+  border-radius: 24px;
+  background: var(--ink-2);
+  filter: grayscale(.35);
+  transition: filter .35s var(--ease), transform .35s var(--ease), box-shadow .35s var(--ease);
+}
+.team li:hover img { filter: none; transform: translateY(-4px); box-shadow: 0 0 0 3px var(--amber); }
+.team h3 { margin-top: 14px; font-size: 1.25rem; }
+@media (max-width: 800px) { .team { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (prefers-reduced-motion: reduce) { .team img { transition: none; } .team li:hover img { transform: none; } }
