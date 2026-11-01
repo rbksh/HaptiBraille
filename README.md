@@ -1,15 +1,15 @@
 # HaptiBraille
 
-**Read any text through your phone's vibration — privately, without sound, without a screen, and without buying expensive hardware.**<br>
-🌐 **Website:** [rbksh.github.io/HaptiBraille](https://rbksh.github.io/HaptiBraille/) — the full story, a live demo, and the Android download<br>
+**Read any text through your phone's vibration, privately, without sound, without a screen, and without buying expensive hardware.**<br>
+**Website:** [rbksh.github.io/HaptiBraille](https://rbksh.github.io/HaptiBraille/)<br>
 Contributors: Shesh Shiromani, Manish Singh, Bhuvan M, Rajeeva MJ<br>
-HaptiBraille is a mobile app (Android now, iOS planned) that turns written text into
-**Braille made of vibrations**. A person who is blind, deafblind or has low vision can hold the
-phone in their hand or pocket and *feel* each letter as a short rhythm of taps.
+HaptiBraille is a mobile app (Android only, iOS planned) that turns written text into
+**Braille made of vibrations**. A person who is blind, deafblind, or has low vision can hold the
+phone in their hand or pocket and *feel* each letter as a short rhythm of taps and spaces.
 
 This document explains the whole project from the very beginning: the problem, why it matters,
 the idea behind the solution, how the app works inside, every technology used, what each
-important piece of code does, and how to run it. No prior knowledge is assumed — technical words
+important piece of code does, and how to run it. No prior knowledge is assumed; all technical words
 are explained the first time they appear, and there is a [glossary](#22-glossary) at the end.
 
 ---
